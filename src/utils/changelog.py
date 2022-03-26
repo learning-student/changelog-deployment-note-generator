@@ -37,14 +37,14 @@ def get_total_summary(changes):
 
     return summary
 
-def render_list(data, title: str, key: str):
+def render_list(data, title: str, key: str, as_markdown_code = True):
     changelog_text = ""
     list = data[key] if key in data else []
     if len(list) > 0:
         changelog_text += markdown_title(title, h=6)
 
         for item in list:
-            changelog_text += markdown_list_item(markdown_code(item))
+            changelog_text += markdown_list_item(markdown_code(item) if as_markdown_code is True else item)
 
     return changelog_text
 
@@ -81,6 +81,6 @@ def generate_changelog(readLines, include_details : bool = True) -> str:
             changelog_text += render_list(changelog, 'Deployment Commands', 'execute_commands')
             changelog_text += render_list(changelog, 'New environment variables', 'added_environments')
             changelog_text += render_list(changelog, 'Changed environment variables', 'changed_environments')
-            changelog_text += render_list(changelog, 'All commits"', 'all_commits')
+            changelog_text += render_list(changelog, 'All commits', 'all_commits')
 
     return changelog_text

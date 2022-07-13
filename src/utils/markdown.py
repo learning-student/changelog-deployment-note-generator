@@ -5,7 +5,7 @@ def markdown_title(title: str, h=1):
 
 
 def markdown_list_item(item: str):
-    return "-" + item + "\n"
+    return "-" + item + "\n\n"
 
 
 def markdown_code(code: str):
